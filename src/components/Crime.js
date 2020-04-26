@@ -1,5 +1,6 @@
 import React from 'react'
 import searchCrime from '../service/searchCrime'
+import Button from './Button'
 
 const Crimes = (props)=>{
     return(
@@ -10,6 +11,12 @@ const Crimes = (props)=>{
                     <div>
                     <p>Crime:{item.crime}</p>
                     <p>Date:{item.date}</p>
+                    <Button
+                    onClick={()=>{
+                        let id = item._id
+                        props.onDelete(id)
+                    }}
+                    >Delete</Button>
                     
                     
                     </div>
