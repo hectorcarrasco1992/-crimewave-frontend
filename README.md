@@ -1,4 +1,20 @@
+# Crime Wave
+
+This App originally was supposed to allow the user to input their address which will give them their latitude and longitude. The user would then input that information and get back the recent crimes reported through the Crimeometer api along with a map.
+
+### Technical Difficulties
+Disappointingly however, the api reached its call limit and i was no longer able to pull the data and map from the api.
+
+
+## NPM Install
+run npm install to get all the packages needed to run the app
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## .env
+
+Must create a .env file and include your own 
+* Session_Secret
+* MONGODB_URI
 
 ## Available Scripts
 
@@ -37,32 +53,9 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Routes
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+In in the _crimeWave-backend_ folder you will find routes that are then used in the frontend to pull data and manipulate.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+* _'/crime_' && _'/crimes_' has the get and post routes thats allow user to get the crimes from the data base and also report a crime and send it to the database
+* _crime/number_ gets the user a random fact about a random user that gets pulled from [numbersapi ](http://www.numbersapi.com/#42)

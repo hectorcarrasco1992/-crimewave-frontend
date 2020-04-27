@@ -3,6 +3,8 @@ import axios from 'axios'
 import Crimes from './Crime'
 import Search from './Search'
 import CreateCrime from './CreateCrime'
+import NumberFact from './NumberFact'
+import Footer from './Footer'
 
 
 import crimeData from '../data/data'
@@ -15,6 +17,7 @@ class App extends Component{
             crimes: [],
             searchTerm:'',
             crime:[],
+            numberSearch:'',
             numberFact:[]
         }
     }
@@ -31,23 +34,26 @@ class App extends Component{
             this.setState({crimes: crimes.data})
         })
     }
-    loadNumber =()=>{
-        const numUrl = '/number' // sets our backend file to the url
-        
-        axios.get(numUrl).then((results)=>{
-            this.setState({numberFact: results.data})
-        })
-    }
+    // loadNumber =()=>{
+    //     const url = '/number'
+
+    //     axios.get(url).then((result)=>{
+    //         console.log(result.data)
+    //     })
+    // }
 
     handleChange=(event)=>{
         this.setState({searchTerm:event.target.value},()=>{
             console.log(this.state.searchTerm)
         })
     };
+    handleNumChange=(event)=>{
+        this.setState({numberSearch:event.target.value},()=>{
+            console.log(this.state.numberSearch)
+        })
+    };
     componentDidMount(){
         this.loadCrimes()
-        
-
     };
 
     createCrimeSubmit=(event,crime)=>{
@@ -65,6 +71,30 @@ class App extends Component{
         })
 
     }
+    createNumSubmit=(event,num)=>{
+        event.preventDefault()
+        const url = 'crime/number'
+        let axiosConfig = {
+            headers:{
+                'Content-Type':'application/json;charset=UTF-8',
+                'Access-Control-Allow-Origin':'*'
+
+            }
+        }
+        let newFact = [...this.state.numberFact]
+
+        axios.get(url,axiosConfig).then((result)=>{
+            newFact.unshift(result.data)
+            return this.setState(this.state.numberFact=newFact)
+        })
+    }
+    // numSubmit =(event)=>{
+    //     event.preventDefault()
+    //     this.createNumSubmit(event,this.state.numberFact)
+    //     let emptyFact = {numberFact:''}
+    //     this.setState({numberFact:emptyFact})
+    //     // event.target.reset()
+    // }
     render(){
         // console.log(this.state.crimes[0].crime)
         return(
@@ -91,11 +121,13 @@ class App extends Component{
                     
                     />
 
-            <h1>{this.state.numberFact}</h1>
-                <form action="">
-                    <input type="text" name="number"/>
-                    <Button type="submit" onClick={this.loadNumber}></Button>
-                </form>
+            
+                <NumberFact style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}
+                createNumSubmit = {this.createNumSubmit}
+                numberFact = {this.state.numberFact}
+                ></NumberFact>
+
+                <Footer></Footer>
                 
 
                 

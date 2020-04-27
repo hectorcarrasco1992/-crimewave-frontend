@@ -10,7 +10,7 @@ const Crimes = (props)=>{
             <h3 className='h3-crime'>These are the last reported crimes in WilliamsBurg</h3>
             {props.crimes.filter(searchCrime(props.searchTerm)).map((item,i)=> {
                 return(
-                    <div className='crime-content'>
+                    <div className='crime-content' key={item._id}>
                     <p>Crime:{item.crime}</p>
                     <p>Date:{item.date}</p>
                     <Button
