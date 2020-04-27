@@ -3,15 +3,19 @@ import axios from 'axios'
 import Crimes from './Crime'
 import Search from './Search'
 import CreateCrime from './CreateCrime'
+
+
 import crimeData from '../data/data'
 import '../AppStyle.css'
+import Button from './Button'
 class App extends Component{
     constructor(){
         super()
         this.state = {
             crimes: [],
             searchTerm:'',
-            crime:[]
+            crime:[],
+            numberFact:[]
         }
     }
 
@@ -27,6 +31,13 @@ class App extends Component{
             this.setState({crimes: crimes.data})
         })
     }
+    loadNumber =()=>{
+        const numUrl = '/number' // sets our backend file to the url
+        
+        axios.get(numUrl).then((results)=>{
+            this.setState({numberFact: results.data})
+        })
+    }
 
     handleChange=(event)=>{
         this.setState({searchTerm:event.target.value},()=>{
@@ -35,6 +46,8 @@ class App extends Component{
     };
     componentDidMount(){
         this.loadCrimes()
+        
+
     };
 
     createCrimeSubmit=(event,crime)=>{
@@ -77,6 +90,15 @@ class App extends Component{
                     onDelete={this.onDelete}
                     
                     />
+
+            <h1>{this.state.numberFact}</h1>
+                <form action="">
+                    <input type="text" name="number"/>
+                    <Button type="submit" onClick={this.loadNumber}></Button>
+                </form>
+                
+
+                
 
             </div>
                 </div>
