@@ -4,6 +4,7 @@ import Crimes from './Crime'
 import Search from './Search'
 import CreateCrime from './CreateCrime'
 import crimeData from '../data/data'
+import '../AppStyle.css'
 class App extends Component{
     constructor(){
         super()
@@ -54,27 +55,31 @@ class App extends Component{
     render(){
         // console.log(this.state.crimes[0].crime)
         return(
-            <div>
-                <h1 style={{display:'flex',justifyContent:'center'}}>Crimes in WilliamsBurg </h1>
+            <div className='app-body' style={{margin:0,padding:0} }>
+                <h1 style={{display:'flex',justifyContent:'center',textShadow:'red 1px 1px'}}>Crimes in WilliamsBurg </h1>
                 <hr style={{width:'50%'}}/>
+                
+                <div style={{margin:0,padding:0}}>
+
                 <Search
-                style= {{display:'flex', justifyContent:'center'}}
+                style= {{display:'flex', justifyContent:'center',width:"100%"}}
                 handleChange = {this.handleChange}
                 searchTerm = {this.state.searchTerm}
-                />
-
-            
-                <Crimes
-                    crimes={this.state.crimes}
-                    searchTerm ={this.state.searchTerm}
-                    onDelete={this.onDelete}
-
                 />
 
                 <CreateCrime
                 createCrimeSubmit ={this.createCrimeSubmit}
                 />
+                <hr style={{width:'50%'}}/> 
+                <Crimes
+                    crimes={this.state.crimes}
+                    searchTerm ={this.state.searchTerm}
+                    onDelete={this.onDelete}
+                    
+                    />
+
             </div>
+                </div>
         )
     }
 }

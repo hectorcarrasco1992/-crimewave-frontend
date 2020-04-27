@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Button from './Button'
+import '../CreateCrime.css'
 
 class CreateCrime extends Component{
     constructor(){
@@ -27,7 +28,7 @@ class CreateCrime extends Component{
 
     render(){
         return(
-            <div>
+            <div className='create-main-div'>
                 <h3>Report a Crime</h3>
                 <form action="" onSubmit={this.submit}>
                     <div>
